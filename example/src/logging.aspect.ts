@@ -2,10 +2,11 @@ import { AdviceProvider, AopModule, AspectsRegistry } from "@nestjs-architects/a
 import { Module, SetMetadata } from "@nestjs/common";
 
 const LOGGING_KEY = 'LOGGING';
+export const Logging = (options: LoggingOptions) => SetMetadata(LOGGING_KEY, options);
+
 interface LoggingOptions {
   format: 'JSON' | 'TEXT';
 }
-export const Logging = (options: LoggingOptions) => SetMetadata(LOGGING_KEY, options);
 
 class LoggingAdvice implements AdviceProvider {
   async attach(originalMethod: Function, args: unknown[], options: LoggingOptions): Promise<unknown> {

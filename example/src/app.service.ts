@@ -5,9 +5,10 @@ import { Logging } from './logging.aspect';
 @Injectable()
 export class AppService {
 
-  @Logging({format: 'JSON'})
+  @Logging({format: 'TEXT'})
   @ErrorHandling()
   getHello(): string {
+    console.log('Initial method called');
     return 'Hello World!';
   }
 
