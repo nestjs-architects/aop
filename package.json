@@ -1,6 +1,6 @@
 {
   "name": "@nestjs-architects/aop",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A library that makes aspect-oriented programming simpler",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
