@@ -1,14 +1,20 @@
 import { Injectable } from '@nestjs/common';
-import { Target } from './aop/decorators';
+import { ErrorHandling } from './error-handling.aspect';
+import { Logging } from './logging.aspect';
 
 @Injectable()
 export class AppService {
-  @Target('SAMPLE')
+
+  @Logging({format: 'JSON'})
+  @ErrorHandling()
   getHello(): string {
     return 'Hello World!';
   }
 
-  getSomething() {
-    return 'something';
+  @Logging({format: 'TEXT'})
+  @ErrorHandling()
+  error() {
+    throw new Error('Test Error');
   }
+
 }

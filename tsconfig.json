@@ -1,8 +1,16 @@
 {
-    "extends": "../../tsconfig.json",
-    "compilerOptions": {
-      "outDir": "./dist"
-    },
-    "include": ["src", "example/src/aop/advice.manager.ts"],
-    "exclude": ["example"]
-  }
+  "compilerOptions": {
+    "outDir": "./dist",
+    "baseUrl": "./src",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "lib": ["ES7"],
+    "target": "es2017",
+    "module": "Node16",
+    "types": ["node"],
+    "declaration": true,
+    "noImplicitAny": true
+  },
+  "include": ["src"],
+  "exclude": ["example"]
+}

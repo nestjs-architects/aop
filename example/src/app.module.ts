@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
-import { AopModule } from './aop/aop.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { BeforeSample } from './before-sample';
+import { ErrorHandlingModule } from './error-handling.aspect';
+import { LoggingModule } from './logging.aspect';
 
 @Module({
-  imports: [AopModule],
+  imports: [LoggingModule, ErrorHandlingModule],
   controllers: [AppController],
-  providers: [AppService, BeforeSample],
+  providers: [AppService],
 })
 export class AppModule {}

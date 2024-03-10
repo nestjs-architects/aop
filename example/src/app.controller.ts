@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
-import { Before, Target } from './aop/decorators';
 import { AppService } from './app.service';
+import { Logging } from './logging.aspect';
 
 @Controller()
 export class AppController {
@@ -9,5 +9,10 @@ export class AppController {
   @Get()
   getHello(): string {
     return this.appService.getHello();
+  }
+
+  @Get('error')
+  error() {
+    return this.appService.error();
   }
 }
