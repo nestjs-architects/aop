@@ -13,9 +13,11 @@
     "url": "git+https://github.com/nestjs-architects/aop.git"
   },
   "keywords": [
-    "NestJS",
-    "Aspect-Oriented Programming",
-    "AOP"
+    "nestjs",
+    "nestjs-architects",
+    "nestjs-talks",
+    "aspect-ariented programming",
+    "aop"
   ],
   "author": {
     "name": "Maciej Sikorski",
