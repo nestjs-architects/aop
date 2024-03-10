@@ -1,0 +1,44 @@
+{
+  "name": "@nestjs-architects/aop",
+  "version": "1.0.0",
+  "description": "A library that makes aspect-oriented programming simpler",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nestjs-architects/aop.git"
+  },
+  "keywords": [
+    "NestJS",
+    "Aspect-Oriented",
+    "Programming"
+  ],
+  "author": "Maciej Sikorski",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nestjs-architects/aop/issues"
+  },
+  "homepage": "https://github.com/nestjs-architects/aop#readme",
+  "peerDependencies": {
+    "@nestjs/common": "^9.0.0",
+    "@nestjs/core": "^9.0.0"
+  },
+  "devDependencies": {
+    "git-format-staged": "2.1.1",
+    "husky": "6.0.0",
+    "prettier": "2.2.1",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.2.0",
+    "typescript": "^4.7.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "git-format-staged -f 'prettier --ignore-unknown --stdin --stdin-filepath \"{}\"' ."
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
