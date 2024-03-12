@@ -3,7 +3,14 @@
 [![version](https://img.shields.io/npm/v/@nestjs-architects/aop.svg)](https://www.npmjs.com/package/@nestjs-architects/aop)
 [![downloads](https://img.shields.io/npm/dt/@nestjs-architects/aop.svg)](https://www.npmjs.com/package/@nestjs-architects/aop)
 
-If you don't know what AOP is check this out
+## Profit
+
+This package will help you make your services clean and focused on the feature.
+Many **non-functional** requirements can be easily added using Aspect-Oriented Programming.
+
+### Learn more
+
+[Aspect-oriented programming with NestJS](https://medium.com/@maciejsikorski/aspect-oriented-programming-with-nestjs-a2e420d9980e)
 
 ## Usage
 
@@ -80,7 +87,3 @@ export class LoggingModule {
 Now, every time the decoreted method is called the additional code provided by you is executed too.
 
 ![showcase](showcase.png)
-
-## Learn more
-
-[Aspect-oriented programming with NestJS](https://medium.com/@maciejsikorski/aspect-oriented-programming-with-nestjs-a2e420d9980e)
