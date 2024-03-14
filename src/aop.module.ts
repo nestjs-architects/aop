@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { DiscoveryModule } from '@nestjs/core';
-import { AopExplorer } from './aop.explorer';
+import { AspectsApplier } from './aspects-applier';
 import { AspectsRegistry } from './aspects.registry';
 
 @Module({
   imports: [DiscoveryModule],
-  providers: [AopExplorer, AspectsRegistry],
-  exports: [AspectsRegistry],
+  providers: [AspectsApplier, AspectsRegistry],
+  exports: [AspectsApplier, AspectsRegistry],
 })
 export class AopModule {}

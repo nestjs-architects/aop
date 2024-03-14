@@ -4,7 +4,7 @@ import { InstanceWrapper } from '@nestjs/core/injector/instance-wrapper';
 import { AspectsRegistry } from './aspects.registry';
 
 @Injectable()
-export class AopExplorer implements OnModuleInit {
+export class AspectsApplier implements OnModuleInit {
   constructor(
     private discoveryService: DiscoveryService,
     private registry: AspectsRegistry,
@@ -16,7 +16,20 @@ export class AopExplorer implements OnModuleInit {
     this.explore();
   }
 
-  explore(): void {
+  applyToProvider(instance: any): void {
+    if (!instance) {
+      return;
+    }
+
+    // scanFromPrototype will iterate through all providers' methods
+    this.metadataScanner
+      .getAllMethodNames(Object.getPrototypeOf(instance))
+      .forEach((methodName: string) =>
+        this.lookupProviderMethod(instance, methodName)
+      );
+  }
+
+  private explore(): void {
     if (this.registry.getAll().length === 0) {
       return;
     }
@@ -27,21 +40,11 @@ export class AopExplorer implements OnModuleInit {
 
     instanceWrappers.forEach((wrapper: InstanceWrapper) => {
       const { instance } = wrapper;
-
-      if (!instance) {
-        return;
-      }
-
-      // scanFromPrototype will iterate through all providers' methods
-      this.metadataScanner
-        .getAllMethodNames(Object.getPrototypeOf(instance))
-        .forEach((methodName: string) =>
-          this.lookupProviderMethod(instance, methodName)
-        );
+      this.applyToProvider(instance);
     });
   }
 
-  lookupProviderMethod(
+  private lookupProviderMethod(
     instance: Record<string, (arg: unknown) => Promise<unknown>>,
     methodName: string
   ) {
