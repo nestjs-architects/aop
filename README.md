@@ -87,3 +87,31 @@ export class LoggingModule {
 Now, every time the decoreted method is called the additional code provided by you is executed too.
 
 ![showcase](showcase.png)
+
+## Adding aspects to services created manually
+
+There are cases when you would like to create a new service dynamically, not just inject it.
+
+For such services you can use `AspectsApplier`.
+
+```typescript
+import { AspectsApplier } from '@nestjs-architects/aop';
+import { Injectable } from '@nestjs/common';
+
+export class Speaker {
+  @Logging()
+  speak() {
+    console.log('I am not a singleton');
+  }
+}
+
+@Injectable()
+export class AppService {
+  constructor(private readonly aspectsApplier: AspectsApplier) {}
+  speak() {
+    const service = new Speaker();
+    this.aspectsApplier.applyToProvider(service);
+    service.speak();
+  }
+}
+```
