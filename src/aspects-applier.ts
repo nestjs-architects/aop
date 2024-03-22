@@ -16,7 +16,7 @@ export class AspectsApplier implements OnModuleInit {
     this.explore();
   }
 
-  applyToProvider(instance: any): void {
+  applyToProvider(instance: unknown): void {
     if (!instance) {
       return;
     }
@@ -25,7 +25,13 @@ export class AspectsApplier implements OnModuleInit {
     this.metadataScanner
       .getAllMethodNames(Object.getPrototypeOf(instance))
       .forEach((methodName: string) =>
-        this.lookupProviderMethod(instance, methodName)
+        this.lookupProviderMethod(
+          instance as Record<
+            string,
+            (arg: unknown) => Promise<unknown> | unknown
+          >,
+          methodName
+        )
       );
   }
 
@@ -45,7 +51,7 @@ export class AspectsApplier implements OnModuleInit {
   }
 
   private lookupProviderMethod(
-    instance: Record<string, (arg: unknown) => Promise<unknown>>,
+    instance: Record<string, (arg: unknown) => Promise<unknown> | unknown>,
     methodName: string
   ) {
     this.registry.getAll().forEach(([key, provider]) => {
@@ -58,7 +64,7 @@ export class AspectsApplier implements OnModuleInit {
 
       const initialMetadata = Reflect.getMetadataKeys(methodRef) || [];
 
-      instance[methodName] = async (...args: unknown[]) => {
+      instance[methodName] = (...args: unknown[]) => {
         return provider.attach(methodRef.bind(instance), args, aspectOptions);
       };
 
