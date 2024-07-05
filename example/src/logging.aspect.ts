@@ -19,13 +19,17 @@ class LoggingAdvice implements AdviceProvider {
     originalMethod: Function,
     args: unknown[],
     options: LoggingOptions,
+    targetObject: Record<string, (arg: unknown) => Promise<unknown> | unknown>,
   ): Promise<unknown> {
+    const originalMethodName = originalMethod.name.replace('bound ', '');
+    const beforeMessage = `Before ${targetObject.constructor.name}.${originalMethodName}...`;
     console.log(
-      options.format === 'JSON' ? { message: 'Before...' } : 'Before...',
+      options.format === 'JSON' ? { message: beforeMessage } : beforeMessage,
     );
     const result = await originalMethod(...args);
+    const afterMessage = `After ${targetObject.constructor.name}.${originalMethodName}...`;
     console.log(
-      options.format === 'JSON' ? { message: 'After...' } : 'After...',
+      options.format === 'JSON' ? { message: afterMessage } : afterMessage,
     );
     return result;
   }
