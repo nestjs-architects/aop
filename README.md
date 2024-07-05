@@ -31,7 +31,8 @@ class LoggingAdvice implements AdviceProvider {
   async attach(
     originalMethod: Function,
     args: unknown[],
-    options: LoggingOptions
+    options: LoggingOptions,
+    targetObject: Record<string, (arg: unknown) => Promise<unknown> | unknown>
   ): Promise<unknown> {
     console.log('Before...');
     const result = await originalMethod(...args);

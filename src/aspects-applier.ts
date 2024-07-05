@@ -65,7 +65,12 @@ export class AspectsApplier implements OnModuleInit {
       const initialMetadata = Reflect.getMetadataKeys(methodRef) || [];
 
       instance[methodName] = (...args: unknown[]) => {
-        return provider.attach(methodRef.bind(instance), args, aspectOptions);
+        return provider.attach(
+          methodRef.bind(instance),
+          args,
+          aspectOptions,
+          instance
+        );
       };
 
       initialMetadata.forEach((key) => {
