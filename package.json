@@ -1,6 +1,6 @@
 {
   "name": "@nestjs-architects/aop",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A library that makes aspect-oriented programming simpler",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -54,7 +54,7 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@nestjs/common": "^10.0.0",
-    "@nestjs/core": "^10.0.0"
+    "@nestjs/common": "*",
+    "@nestjs/core": "*"
   }
 }
